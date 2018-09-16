@@ -14,6 +14,5 @@ func main() {
 	var err error
 	KeyValMap, err = loadData("Corpus.CSV")
 	check(err)
-	fmt.Println(KeyValMap)
 	server(":8080")
 }

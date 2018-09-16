@@ -20,16 +20,15 @@ func kvServiceHandler(w http.ResponseWriter, r *http.Request) {
 	k := vars["key"]
 	kv := KvJSON{}
 	_, ok := KeyValMap[k]
-	if ok {
-		kv.Key = k
-		kv.Value = KeyValMap[k]
-		fmt.Println(kv)
-		json.NewEncoder(w).Encode(kv)
-	} else {
+	if !ok {
 		fmt.Println("The requested key does not exist in the CSV")
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("The requested key does not exist in the CSV\n"))
+		return
 	}
+	kv.Key = k
+	kv.Value = KeyValMap[k]
+	json.NewEncoder(w).Encode(kv)
 }
 
 func server(addr string) {

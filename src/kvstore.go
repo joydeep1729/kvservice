@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+//KeyValMap is a map which stores the data from the file
 var KeyValMap map[string]int
 
 func loadData(filename string) (map[string]int, error) {
